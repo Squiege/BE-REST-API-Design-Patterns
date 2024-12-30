@@ -1,3 +1,4 @@
+# Imports
 from flask import Flask
 from database import db
 from schema import ma
@@ -15,6 +16,7 @@ from routes.employeeBP import employee_blueprint
 from routes.orderBP import order_blueprint
 from routes.productBP import product_blueprint
 from routes.productionBP import production_blueprint
+from routes.reportBP import report_blueprint
 
 def create_app(config_name):
     app = Flask(__name__)
@@ -31,6 +33,7 @@ def blue_print_config(app):
     app.register_blueprint(order_blueprint, url_prefix='/orders')
     app.register_blueprint(product_blueprint, url_prefix='/products')
     app.register_blueprint(production_blueprint, url_prefix='/productions')
+    app.register_blueprint(report_blueprint, url_prefix='/reports')
 
 def configure_rate_limit():
     limiter.limit("5 per day")(customer_blueprint)
